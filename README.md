@@ -1,6 +1,8 @@
 # Monorepo for alwinsden.com
 
-Single root `package.json`; two apps in `packages/`. Build output is at repo root: `dist/docs` (Docusaurus) and `dist/cloudflare` (Vite).
+Single root `package.json`; two apps in `packages/`. 
+
+Build output is at repo root: `dist/docs` (Docusaurus) and `dist/cloudflare` (Vite).
 
 ### Apps
 
