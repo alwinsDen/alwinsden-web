@@ -1,0 +1,11 @@
+body {
+    background-color: #ffffff;
+}
+
+.imageRadius {
+    border-radius: 10px;
+}
+
+div > p {
+    font-family: 'Inter';
+}
