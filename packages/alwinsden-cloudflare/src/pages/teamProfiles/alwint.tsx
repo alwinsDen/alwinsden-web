@@ -184,7 +184,7 @@ const AlwinT = () => {
             gap: '6px',
           }}
         >
-          <p style={{ fontSize: '18px' }}>Some things I write & demos:</p>
+          <p style={{ fontSize: '18px' }}>Some things I wrote & demos:</p>
           <a
             href="https://docs.alwinsden.com/articles/kmp-gauth-multiplatform"
             style={{ fontSize: '18px' }}
@@ -193,7 +193,7 @@ const AlwinT = () => {
             * The KMP Way - GAuth for Android
           </a>
           <a href="https://youtu.be/dNnB43yC0T0" style={{ fontSize: '18px' }} target="_blank">
-            * XROS MomentumX demo
+            * XR Open Source MomentumX demo
           </a>
         </div>
         <div
