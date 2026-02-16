@@ -180,7 +180,7 @@ actual fun rememberGoogleAuthProvider(): GoogleAuthProvider {
 
 #### Suspended signIn function
 
-refer: [GoogleAuthProvider.android.kt](composeApp/src/androidMain/kotlin/com/alwinsden/dino/authentication/components/GoogleAuthProvider.android.kt)
+refer: [GoogleAuthProvider.android.kt](https://github.com/alwinsDen/synapse-ai/blob/master/composeApp/src/androidMain/kotlin/com/alwinsden/dino/authentication/components/GoogleAuthProvider.android.kt)
 
 ```kotlin
 override suspend fun signIn(nonce: String): Result<String> {
