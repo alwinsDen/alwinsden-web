@@ -19,13 +19,13 @@ Since Compose Multi-platform combines the UI aspect for both **_iOS and Android_
 
 ![KMP architecture](./kmp_client.png)
 
-Refer to [Project Synapse code](https://github.com/alwinsDen/mirror-Project-Synapse) for understanding of the archiecture. Basically, the UI layer of the application is shared between iOS and Android (composeApp module), with shared module acting as the common ground for business logic between UI and backend server, while Ktor-based server rests in the server module. More [here](https://kotlinlang.org/docs/multiplatform/multiplatform-discover-project.html).
+Refer to [Project Synapse code](https://github.com/alwinsDen/synapse-ai) to understand the archiecture. Basically, the UI layer of the application is shared between iOS and Android (composeApp module), with shared module acting as the common ground for business logic sharing between UI and backend server, while Ktor-based server rests in the server module. More [here](https://kotlinlang.org/docs/multiplatform/multiplatform-discover-project.html).
 
 <!-- truncate -->
 
-### The GAuth
+### The Google Auth
 
-There are two most common things in a Google authentication flow
+There are two most common things in a Google authentication flow:
 
 1. The user manually signs in to the app by tapping the Sign in with Google button.
 2. The user is automatically signed in, either from previously stored session state or via a bottom sheet that lets them pick from existing Google accounts.
@@ -33,7 +33,7 @@ There are two most common things in a Google authentication flow
 In this article, we explore implementation of Google authentication for Android while maintaining **a common UI on a KMP app.**
 
 :::warning
-For this app, the KMP implementation for Android is straight forward compared to iOS, in iOS we use cinterop library to communicate with native iOS Objective C code. Code [**here**](https://github.com/alwinsDen/mirror-Project-Synapse/tree/main/shared/src/iosMain/kotlin/authManager/ClickTriggerAuth.kt).
+For this app, the KMP implementation for Android is straight forward compared to iOS, in iOS we use cinterop library to communicate with native iOS Objective C code. Code [**here**](https://github.com/alwinsDen/synapse-ai/tree/master/shared/src/iosMain/kotlin/authManager/ClickTriggerAuth.kt).
 :::
 
 <!-- truncate -->
@@ -50,6 +50,8 @@ Since this is not an introduction to expect / actual functions, if you are new t
 :::
 
 The implementation of UI button in commonMain:
+
+refer: [SignInMethod.kt](https://github.com/alwinsDen/synapse-ai/blob/master/composeApp/src/commonMain/kotlin/com/alwinsden/dino/authentication/SignInMethod.kt)
 
 ```kotlin
 @Composable
@@ -98,6 +100,8 @@ So what exactly is this? This is a composable function in which we define `Click
 
 ### expect implementation for `rememberGoogleAuthProvider`
 
+refer: [GoogleAuthProvider.kt](https://github.com/alwinsDen/synapse-ai/blob/master/composeApp/src/commonMain/kotlin/com/alwinsden/dino/authentication/components/GoogleAuthProvider.kt)
+
 ```kotlin
 /**
  * Interface for Google authentication functionality across platforms.
@@ -144,7 +148,9 @@ implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 
 <!--truncate-->
 
-### Android's actual implementation:
+### Android actual implementation
+
+refer: [GoogleAuthProvider.android.kt](https://github.com/alwinsDen/synapse-ai/blob/master/composeApp/src/androidMain/kotlin/com/alwinsden/dino/authentication/components/GoogleAuthProvider.android.kt)
 
 ```kotlin
 import android.content.Context
@@ -174,6 +180,8 @@ actual fun rememberGoogleAuthProvider(): GoogleAuthProvider {
 
 #### Suspended signIn function
 
+refer: [GoogleAuthProvider.android.kt](composeApp/src/androidMain/kotlin/com/alwinsden/dino/authentication/components/GoogleAuthProvider.android.kt)
+
 ```kotlin
 override suspend fun signIn(nonce: String): Result<String> {
     return try {
@@ -201,11 +209,13 @@ override suspend fun signIn(nonce: String): Result<String> {
 }
 ```
 
-Here BuildKonfig is a generated object created by a popular Kotlin Multiplatform (KMP) Gradle plugin called [BuildKonfig](https://github.com/yshrsmz/BuildKonfig). It injects the Google console auth key from `secrets.properties` file. more [here](https://github.com/alwinsDen/mirror-Project-Synapse/tree/main/composeApp/build.gradle.kts#L100).
+Here BuildKonfig is a generated object created by a popular Kotlin Multiplatform (KMP) Gradle plugin called [BuildKonfig](https://github.com/yshrsmz/BuildKonfig). It injects the Google console auth key from `secrets.properties` file. more [here](https://github.com/alwinsDen/synapse-ai/tree/master/composeApp/build.gradle.kts#L100).
 
 ### What is Nonce here?
 
 This is a safety mechanism in place to prevent replay attacks. Nonce flows from the server, usually a JWT token.
+
+_Valkey implementation:_ [Valkey Glide](https://github.com/alwinsDen/synapse-ai/blob/master/server/src/main/kotlin/com/alwinsden/dino/valkeyManager/glideInitiator.kt)
 
 ```shell
 | Backend System                              |
@@ -283,11 +293,11 @@ override suspend fun checkExistingCredentials(nonce: String): String? {
 
 In either case, the returned Google token ID, serves the same primary function.
 
-This expect function also has a corresponding implementation in iOS which requires a more complex setup and will be discussed in an upcoming article. Until then check the code [here](https://github.com/alwinsDen/mirror-Project-Synapse/tree/main/shared/src/iosMain/kotlin/authManager/ClickTriggerAuth.kt).
+This expect function also has a corresponding implementation in iOS which requires a more complex setup and will be discussed in an upcoming article. Until then check the code [here](https://github.com/alwinsDen/synapse-ai/tree/master/shared/src/iosMain/kotlin/authManager/ClickTriggerAuth.kt).
 
 <!--truncate-->
 
 :::success
 This is my first article on KMP, which I too am new to. If you have any feedback or suggestions, please feel free to reach out to me.
-Until then, consider starring the [project](https://github.com/alwinsDen/mirror-Project-Synapse) and follow me on [GitHub](https://github.com/alwinsDen).
+Until then, consider starring the [project](https://github.com/alwinsDen/synapse-ai) and follow me on [GitHub](https://github.com/alwinsDen).
 :::
