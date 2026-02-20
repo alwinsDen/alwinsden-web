@@ -17,7 +17,7 @@ background: "#F3DB00", color: "#000000"}}> yellow</span> inspired from [_Pluribu
 
 ### Difference between @Preview & Live Edits
 
-Android Studio comes with manual/automated live edits, which, when a user makes changes to code, reflects those in a running emulator, without needing recompilation (\*generally).
+Android Studio comes with manual/automated live edits, which, when a user makes changes to code, reflects those in a running emulator, without needing a full recompilation (\*generally).
 
 But what if the component is nested deep in a parent page that can be accessed only by authentication? What if it's visible only on a specific user action like a pop-up or a toast? So, if only using Live Edits, as a dev I would have to manually trigger these flows _every single time_ or add in testing code to make this specific component always visible, not forgetting the huge resource footprint with a running emulator at all times.
 
