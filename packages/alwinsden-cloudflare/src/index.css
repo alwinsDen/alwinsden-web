@@ -4,3 +4,29 @@
   padding: 0;
 }
 
+html {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* Chrome, Safari, Edge — forces non-overlay, space-reserving scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FEE227;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2f4f4f;
+}
+
+/* Firefox */
+@supports not selector(::-webkit-scrollbar) {
+  html {
+    scrollbar-color: #2f4f4f #FEE227;
+    scrollbar-width: auto;
+  }
+}
+

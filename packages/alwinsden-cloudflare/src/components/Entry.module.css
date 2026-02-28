@@ -122,10 +122,12 @@
   font-size: 1.1rem;
   font-weight: 500;
   width: fit-content;
+  border: solid 1px transparent; 
 
   &:hover {
     background: #fff;
     color: #000;
+    border: solid 1px #000; 
   }
 }
 
@@ -312,5 +314,9 @@
 
   .footer-link {
     font-size: 1rem;
+  }
+
+  .footer {
+    padding: 10px 0;
   }
 }
