@@ -62,7 +62,11 @@ const Entry = () => {
       <section className={style.hero}>
         <div className={style['hero-inner']}>
           <div className={style['hero-content']}>
-            <h1 className={style['hero-headline']}>Better frontend,{'\n'}for the AI age.</h1>
+            <h1 className={style['hero-headline']}>
+              <span style={{ whiteSpace: 'nowrap' }}>Better frontend,</span>
+              <br />
+              for the AI age.
+            </h1>
             <div className={style['hero-subtext']}>
               <div className={style['hero-explore']}>
                 <p className={style['hero-subtitle']}>
