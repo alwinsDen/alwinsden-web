@@ -39,21 +39,21 @@ const AlwinT = () => {
               className={styles['article-link']}
               target="_blank"
             >
-              Compose Previews - A Relaxed Development.
+              *Compose Previews - A Relaxed Development.
             </a>
             <a
               href="https://docs.alwinsden.com/articles/kmp-gauth-multiplatform"
               className={styles['article-link']}
               target="_blank"
             >
-              The KMP Way - GAuth for Android
+              *The KMP Way - GAuth for Android
             </a>
             <a
               href="https://youtu.be/dNnB43yC0T0"
               className={styles['article-link']}
               target="_blank"
             >
-              XR Open Source MomentumX demo
+              *XR Open Source MomentumX demo
             </a>
           </div>
 
