@@ -1,6 +1,6 @@
 {
   "name": "alwinsden-unified-web",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Monorepo for alwinsden.com (docs + main site + mobile app)",
   "packageManager": "pnpm@10.29.3",
