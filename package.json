@@ -5,7 +5,7 @@
   "description": "Monorepo for alwinsden.com (docs + main site + mobile app)",
   "packageManager": "pnpm@10.29.3",
   "engines": {
-    "node": ">=20.0"
+    "node": ">=24.19.0"
   },
   "scripts": {
     "dev:docs": "pnpm --filter alwinsden-docs start",
@@ -17,13 +17,5 @@
     "preview:cloudflare": "pnpm --filter alwinsden-cloudflare preview",
     "lint:cloudflare": "pnpm --filter alwinsden-cloudflare lint",
     "typecheck:cloudflare": "pnpm --filter alwinsden-cloudflare typecheck"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@swc/core",
-      "core-js",
-      "core-js-pure",
-      "esbuild"
-    ]
   }
 }

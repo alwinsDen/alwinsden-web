@@ -2,8 +2,14 @@ packages:
   - 'packages/*'
 
 catalog:
-  react: 19.2.3
-  react-dom: 19.2.3
+  react: 19.2.8
+  react-dom: 19.2.8
   '@types/react': ^19.1.2
   '@types/react-dom': ^19.1.2
   typescript: ~5.8.3
+
+allowBuilds:
+  '@swc/core': true
+  core-js: true
+  core-js-pure: true
+  esbuild: true
