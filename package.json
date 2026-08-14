@@ -10,6 +10,8 @@
   "scripts": {
     "dev:docs": "pnpm --filter alwinsden-docs start",
     "dev:cloudflare": "pnpm --filter alwinsden-cloudflare dev",
+    "dev:aikb:ios": "pnpm --filter ai-keyboard exec expo run:ios",
+    "dev:aikb:android": "pnpm --filter ai-keyboard exec expo run:android",
     "build": "pnpm build:docs && pnpm build:cloudflare",
     "build:docs": "pnpm --filter alwinsden-docs build",
     "build:cloudflare": "pnpm --filter alwinsden-cloudflare build",
