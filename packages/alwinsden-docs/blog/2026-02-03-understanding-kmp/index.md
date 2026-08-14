@@ -13,7 +13,7 @@ If new, checkout KMP architecture @ [KMP - Build Cross-platform](https://kotlinl
 
 Since Compose Multi-platform combines the UI aspect for both **_iOS and Android_**, how do you implement Google authentication such that the UI code remains unified while maintaining the ideal authentication flow specific to these platforms in <img src="/img/kotlin-icon.png" alt="Kotlin" width="16" style={{verticalAlign: 'text-bottom'}} /> Kotlin without using a KMP library?
 
-<!-- truncate -->
+{/* truncate */}
 
 ### Kotlin Multiplatform simplified
 
@@ -21,7 +21,7 @@ Since Compose Multi-platform combines the UI aspect for both **_iOS and Android_
 
 Refer to [Project Synapse code](https://github.com/alwinsDen/synapse-ai) to understand the archiecture. Basically, the UI layer of the application is shared between iOS and Android (composeApp module), with shared module acting as the common ground for business logic sharing between UI and backend server, while Ktor-based server rests in the server module. More [here](https://kotlinlang.org/docs/multiplatform/multiplatform-discover-project.html).
 
-<!-- truncate -->
+{/* truncate */}
 
 ### The Google Auth
 
@@ -36,7 +36,7 @@ In this article, we explore implementation of Google authentication for Android 
 For this app, the KMP implementation for Android is straight forward compared to iOS, in iOS we use cinterop library to communicate with native iOS Objective C code. Code [**here**](https://github.com/alwinsDen/synapse-ai/tree/master/shared/src/iosMain/kotlin/authManager/ClickTriggerAuth.kt).
 :::
 
-<!-- truncate -->
+{/* truncate */}
 
 ### Setting up, expect / actual functions
 
@@ -96,7 +96,7 @@ fun ClickableContinueWithGoogle(nonce: String, handleReceivedGoogleTokenId: (Str
 
 So what exactly is this? This is a composable function in which we define `ClickableContinueWithGoogle` which has two ways to trigger a sign in. Our automated implementation triggers in a `LaunchdedEffect` and a modifier with clickable property. Both these use methods from `rememberGoogleAuthProvider()` - an expect implementation which we explore next.
 
-<!--truncate -->
+{/* truncate */}
 
 ### expect implementation for `rememberGoogleAuthProvider`
 
@@ -146,7 +146,7 @@ implementation("androidx.credentials:credentials-play-services-auth:$credentialV
 implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 ```
 
-<!--truncate-->
+{/* truncate */}
 
 ### Android actual implementation
 
@@ -295,7 +295,7 @@ In either case, the returned Google token ID, serves the same primary function.
 
 This expect function also has a corresponding implementation in iOS which requires a more complex setup and will be discussed in an upcoming article. Until then check the code [here](https://github.com/alwinsDen/synapse-ai/tree/master/shared/src/iosMain/kotlin/authManager/ClickTriggerAuth.kt).
 
-<!--truncate-->
+{/* truncate */}
 
 :::success
 This is my first article on KMP, which I too am new to. If you have any feedback or suggestions, please feel free to reach out to me.
