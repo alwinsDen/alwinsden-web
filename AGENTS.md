@@ -19,6 +19,7 @@ Package-specific commands, constraints, and gotchas live in each area's own `AGE
 
 - `pnpm dev:docs` / `pnpm dev:cloudflare` — web app dev servers
 - `pnpm build` — builds both web apps
+- Deploys (both need `wrangler login` or `CLOUDFLARE_API_TOKEN`): `pnpm --filter alwinsden-docs run deploy`, `pnpm --filter alwinsden-cloudflare run deploy`
 - Cargo commands (`cargo run -p service`, `cargo test`, `cargo clippy`) and the mobile builds (`pnpm dev:aikb:*`) are documented in their area's AGENTS.md files above.
 
 ## Constraints & gotchas (cross-cutting)

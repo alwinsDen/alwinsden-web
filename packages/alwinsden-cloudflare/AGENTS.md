@@ -7,7 +7,7 @@ React Router v7 (framework mode, SSR) site for alwinsden.com, deployed as a Clou
 - `pnpm dev:cloudflare` — dev server (`react-router dev`; server code runs in workerd via @cloudflare/vite-plugin)
 - `pnpm --filter alwinsden-cloudflare lint` and `typecheck` — only app with lint/typecheck scripts
 - `pnpm --filter alwinsden-cloudflare preview` — production build served locally in workerd
-- `pnpm --filter alwinsden-cloudflare deploy` — `wrangler deploy` (needs `wrangler login` or `CLOUDFLARE_API_TOKEN`)
+- `pnpm --filter alwinsden-cloudflare run deploy` — `wrangler deploy` (needs `wrangler login` or `CLOUDFLARE_API_TOKEN`)
 - Build output goes to the repo root `dist/cloudflare` (`client/` assets + `server/` worker bundle; set via `buildDirectory` in `react-router.config.ts`).
 
 ## Constraints & gotchas
