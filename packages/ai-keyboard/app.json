@@ -34,6 +34,14 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photos to attach to chat.",
+          "cameraPermission": "Allow $(PRODUCT_NAME) to use your camera to take photos to attach.",
+          "microphonePermission": false
+        }
       ]
     ],
     "experiments": {
