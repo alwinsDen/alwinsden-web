@@ -3,10 +3,11 @@ import { Menu, X, ArrowRight } from 'lucide-react';
 import style from './Entry.module.css';
 
 const navLinks = [
+  { label: 'HOME', href: '/' },
   { label: 'WHO AM I?', href: '/alwin' },
   { label: 'ARTICLES', href: 'https://docs.alwinsden.com/' },
   { label: 'GITHUB', href: 'https://github.com/alwinsden' },
-  { label: 'OPEN SOURCE', href: '#products' },
+  // { label: 'OPEN SOURCE', href: '#products' },
 ];
 
 const Entry = ({
