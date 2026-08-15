@@ -1,7 +1,19 @@
+import type { MetaFunction } from 'react-router';
 import { AlwinsDenRepeat } from '../../components/articleBackgrounds/alwinsDenRepeat';
 import IntroImage1 from './assets/intro_1.png';
 
 import style from './index.module.css';
+
+export const meta: MetaFunction = () => [
+  { title: 'Project Synapse — alw1nsDen' },
+  {
+    name: 'description',
+    content:
+      'Experimental Compose Multiplatform UI: one codebase for Android and iOS, with Ktor auth and Claude API integration.',
+  },
+  { property: 'og:title', content: 'Project Synapse — alw1nsDen' },
+];
+
 const SynapseUI = () => {
   return (
     <AlwinsDenRepeat>

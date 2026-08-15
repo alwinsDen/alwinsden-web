@@ -7,7 +7,7 @@ Package-specific commands, constraints, and gotchas live in each area's own `AGE
 ## Layout
 
 - `packages/alwinsden-docs` — Docusaurus site (docs.alwinsden.com)
-- `packages/alwinsden-cloudflare` — Vite + React + react-router main site (alwinsden.com), deployed on Cloudflare Pages
+- `packages/alwinsden-cloudflare` — React Router v7 (framework mode, SSR) main site (alwinsden.com), deployed as a Cloudflare Worker with static assets
 - `packages/ai-keyboard` — Expo SDK 57 / react-native app (newest, rougher; expo-router; single-screen react-native-paper chat)
 - `service/` — Rust workspace member (axum API server; currently a placeholder in `src/main.rs`)
 - `dist/` — JS build output for both web apps, gitignored
@@ -25,7 +25,7 @@ Package-specific commands, constraints, and gotchas live in each area's own `AGE
 
 - `node-linker=hoisted` in `.npmrc` is deliberate (Docusaurus + Vite + Metro all resolve from root `node_modules`). Don't remove or switch to isolated.
 - Build output goes to the **repo root** `dist/docs` and `dist/cloudflare`, not into the packages (set in `vite.config.ts` and the docs `build` script).
-- pnpm 10 runs postinstall scripts **only** for packages listed in `allowBuilds` in `pnpm-workspace.yaml` (@swc/core, core-js, core-js-pure, esbuild). A new dependency with an install script (common with RN native modules) will silently skip it unless you add it there. pnpm 10 ignores the `pnpm` field in `package.json`.
+- pnpm 10 runs postinstall scripts **only** for packages listed in `allowBuilds` in `pnpm-workspace.yaml` (@swc/core, core-js, core-js-pure, esbuild, workerd). A new dependency with an install script (common with RN native modules) will silently skip it unless you add it there. pnpm 10 ignores the `pnpm` field in `package.json`.
 - Shared versions (react, react-dom, @types/react, typescript) are pinned via `catalog:` protocol in `pnpm-workspace.yaml`. React is deliberately 19.2.3 for RN compatibility — don't bump it to satisfy one app. Change shared versions in the catalog, not per-package.
 
 ## Rules

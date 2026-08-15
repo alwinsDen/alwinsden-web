@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import style from './Entry.module.css';
-import MainHero from '../pages/mainHero/mainHero';
 
 const navLinks = [
   { label: 'WHO AM I?', href: '/alwin' },

@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# React Router typegen + Cloudflare/wrangler build state
+.react-router
+.wrangler
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

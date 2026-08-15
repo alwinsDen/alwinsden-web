@@ -1,5 +1,5 @@
 import style from './mainHero.module.css';
-import alwinsdenIcon from '../../../public/alwinsden-icon.svg';
+import alwinsdenIcon from '../../assets/alwinsden-icon.svg';
 
 const MainHero = () => {
   return (

@@ -1,3 +1,4 @@
+import type { MetaFunction } from 'react-router';
 import styles from './alwint.module.css';
 import Work_Icon_1 from '../../assets/logos/past_work_experience/image_1.png';
 import Work_Icon_2 from '../../assets/logos/past_work_experience/image_2.png';
@@ -5,9 +6,18 @@ import Work_Icon_3 from '../../assets/logos/past_work_experience/image_3.png';
 import Work_Icon_4 from '../../assets/logos/past_work_experience/image_4.png';
 import AlwinProfile from '../../assets/profiles/alwin.png';
 import Pluribus from '../../assets/backgrounds/pluribus.png';
-import { Mail, Paperclip } from 'lucide-react';
 import Marquee from 'react-fast-marquee';
 import Entry from '../../components/Entry';
+
+export const meta: MetaFunction = () => [
+  { title: 'Alwin — alw1nsDen' },
+  {
+    name: 'description',
+    content:
+      'Open source developer working across UI, 3D and multiplatform — background, work and writing.',
+  },
+  { property: 'og:title', content: 'Alwin — alw1nsDen' },
+];
 
 const AlwinT = () => {
   return (

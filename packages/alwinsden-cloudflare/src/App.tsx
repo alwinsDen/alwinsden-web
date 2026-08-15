@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Entry from './components/Entry';
 import MainHero from './pages/mainHero/mainHero';
 
