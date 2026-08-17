@@ -28,6 +28,9 @@ importers:
 
   packages/ai-keyboard:
     dependencies:
+      '@alwinsden-unified-ui/react-native-ui':
+        specifier: workspace:*
+        version: link:../alwinsden-unified-ui/react-native-ui
       '@expo/ui':
         specifier: ~57.0.10
         version: 57.0.10(@babel/core@7.29.0)(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(expo@57.0.12)(react-dom@19.2.3(react@19.2.3))(react-native-worklets@0.10.1(@babel/core@7.29.0)(@react-native/metro-config@0.86.2(@babel/core@7.29.0))(react-native@0.86.2(@babel/core@7.29.0)(@react-native/metro-config@0.86.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.3))(react@19.2.3))(react-native@0.86.2(@babel/core@7.29.0)(@react-native/metro-config@0.86.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.3))(react@19.2.3)
@@ -125,6 +128,9 @@ importers:
 
   packages/alwinsden-cloudflare:
     dependencies:
+      '@alwinsden-unified-ui/web-ui':
+        specifier: workspace:*
+        version: link:../alwinsden-unified-ui/web-ui
       isbot:
         specifier: ^5.2.1
         version: 5.2.1
@@ -229,6 +235,60 @@ importers:
       wrangler:
         specifier: ^4.123.0
         version: 4.123.0
+
+  packages/alwinsden-unified-ui/core:
+    dependencies:
+      react:
+        specifier: '>=18.2.0'
+        version: 19.2.3
+    devDependencies:
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.14
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
+  packages/alwinsden-unified-ui/react-native-ui:
+    dependencies:
+      '@alwinsden-unified-ui/core':
+        specifier: workspace:*
+        version: link:../core
+      react:
+        specifier: '>=18.2.0'
+        version: 19.2.3
+      react-native:
+        specifier: '>=0.76.0'
+        version: 0.86.2(@babel/core@7.29.0)(@react-native/metro-config@0.86.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.3)
+    devDependencies:
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.14
+      react-native-paper:
+        specifier: ^5.15.3
+        version: 5.15.3(react-native-safe-area-context@5.9.0(react-native@0.86.2(@babel/core@7.29.0)(@react-native/metro-config@0.86.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.3))(react@19.2.3))(react-native@0.86.2(@babel/core@7.29.0)(@react-native/metro-config@0.86.2(@babel/core@7.29.0))(@types/react@19.2.14)(react@19.2.3))(react@19.2.3)
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
+
+  packages/alwinsden-unified-ui/web-ui:
+    dependencies:
+      '@alwinsden-unified-ui/core':
+        specifier: workspace:*
+        version: link:../core
+      react:
+        specifier: '>=18.2.0'
+        version: 19.2.3
+    devDependencies:
+      '@types/react':
+        specifier: 'catalog:'
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: 'catalog:'
+        version: 19.2.3(@types/react@19.2.14)
+      typescript:
+        specifier: 'catalog:'
+        version: 5.8.3
 
 packages:
 

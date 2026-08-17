@@ -9,6 +9,7 @@ Package-specific commands, constraints, and gotchas live in each area's own `AGE
 - `packages/alwinsden-docs` — Docusaurus site (docs.alwinsden.com)
 - `packages/alwinsden-cloudflare` — React Router v7 (framework mode, SSR) main site (alwinsden.com), deployed as a Cloudflare Worker with static assets
 - `packages/ai-keyboard` — Expo SDK 57 / react-native app (newest, rougher; expo-router; single-screen react-native-paper chat)
+- `packages/alwinsden-unified-ui` — publishable cross-platform UI packages (`core`, `web-ui`, and `react-native-ui`)
 - `service/` — Rust workspace member (axum API server; currently a placeholder in `src/main.rs`)
 - `dist/` — JS build output for both web apps, gitignored
 - `target/` — Cargo build output, gitignored
@@ -18,7 +19,11 @@ Package-specific commands, constraints, and gotchas live in each area's own `AGE
 ## Commands (run from repo root)
 
 - `pnpm dev:docs` / `pnpm dev:cloudflare` — web app dev servers
-- `pnpm build` — builds both web apps
+- `pnpm build` — builds the unified UI packages and both web apps
+- `pnpm build:ui` — builds all unified UI packages
+- `pnpm --filter @alwinsden-unified-ui/core typecheck` / `build` — shared UI contracts and tokens
+- `pnpm --filter @alwinsden-unified-ui/web-ui typecheck` / `build` — web UI package
+- `pnpm --filter @alwinsden-unified-ui/react-native-ui typecheck` / `build` — React Native UI package
 - Deploys (both need `wrangler login` or `CLOUDFLARE_API_TOKEN`): `pnpm --filter alwinsden-docs run deploy`, `pnpm --filter alwinsden-cloudflare run deploy`
 - Cargo commands (`cargo run -p service`, `cargo test`, `cargo clippy`) and the mobile builds (`pnpm dev:aikb:*`) are documented in their area's AGENTS.md files above.
 

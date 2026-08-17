@@ -13,6 +13,7 @@
     "typecheck": "react-router typegen && tsc -b"
   },
   "dependencies": {
+    "@alwinsden-unified-ui/web-ui": "workspace:*",
     "isbot": "^5.2.1",
     "lucide-react": "^0.512.0",
     "react": "catalog:",

@@ -1,5 +1,6 @@
 import style from './mainHero.module.css';
 import alwinsdenIcon from '../../assets/alwinsden-icon.svg';
+import { WebButton } from '@alwinsden-unified-ui/web-ui';
 
 const MainHero = () => {
   return (
@@ -20,9 +21,11 @@ const MainHero = () => {
                 have become a daily driver for automating mindless typing, while aiding in mindfully
                 focusing on the long-term product architecture.
               </p>
-              <a href="/alwin" className={style['cta-button']}>
-                Explore my work →
-              </a>
+              <WebButton
+                className={style['cta-button']}
+                onPress={() => window.location.assign('/alwin')}>
+                Explore my works →
+              </WebButton>
             </div>
             <div className={style['hero-icon']}>
               <img src={alwinsdenIcon} alt="alwinsDen" />
