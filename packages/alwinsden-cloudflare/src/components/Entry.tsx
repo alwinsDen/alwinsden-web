@@ -5,7 +5,7 @@ import style from './Entry.module.css';
 const navLinks = [
   { label: 'HOME', href: '/' },
   { label: 'WHO AM I?', href: '/alwin' },
-  { label: 'ARTICLES', href: 'https://docs.alwinsden.com/' },
+   { label: 'ARTICLES', href: '/articles/' },
   { label: 'GITHUB', href: 'https://github.com/alwinsden' },
   // { label: 'OPEN SOURCE', href: '#products' },
 ];

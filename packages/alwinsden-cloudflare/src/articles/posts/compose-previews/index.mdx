@@ -1,19 +1,15 @@
----
-slug: compose-previews
-title: Compose Previews - A Relaxed Development.
-authors: [Alwin]
-tags: [kotlin, android, jetpack compose, synapse]
-description: Article No. 2 of the KMP series.
-image: ./Undestand-kotlin-compose.png
-draft: false
----
+export const meta = {
+  slug: 'compose-previews',
+  title: 'Compose Previews - A Relaxed Development.',
+  date: '2026-02-16',
+  description: 'Article No. 2 of the KMP series.',
+  author: 'Alwin T Varghese',
+  cover: '/images/articles/compose-previews/Undestand-kotlin-compose.png',
+};
 
-:::info
-This is the 2nd article in **Understanding KMP** series. Check out the previous one [here](/articles/kmp-gauth-multiplatform)!
-:::
+> **Note**: This is the 2nd article in **Understanding KMP** series. Check out the previous one [here](/articles/kmp-gauth-multiplatform)!
 
-Since the last post, a lot has changed on Project Dino, now renamed to [Synapse](https://github.com/alwinsDen/synapse-ai). The intense white theme has shifted to (or more like in the process) adopting a bright, calm <span style={{
-background: "#F3DB00", color: "#000000"}}> yellow</span> inspired from [_Pluribus(2025)_](<https://en.wikipedia.org/wiki/Pluribus_(TV_series)>). Last article's code references have been updated.
+Since the last post, a lot has changed on Project Dino, now renamed to [Synapse](https://github.com/alwinsDen/synapse-ai). The intense white theme has shifted to (or more like in the process) adopting a bright, calm <span style={{background: '#F3DB00', color: '#000000'}}> yellow</span> inspired from [_Pluribus(2025)_](<https://en.wikipedia.org/wiki/Pluribus_(TV_series)>). Last article's code references have been updated.
 
 ### Difference between @Preview & Live Edits
 
@@ -23,7 +19,7 @@ But what if the component is nested deep in a parent page that can be accessed o
 
 The biggest sell of Previews? _**Isolation.**_
 
-![Synapse login preview](./login_preview.png)
+![Synapse login preview](/images/articles/compose-previews/login_preview.png)
 The above shows login page in Preview mode. Since Previews are purely UX related feature, they don't have to rely on any kind of developer added component conditions.
 
 #### Some things that Compose Previews resolves:
@@ -44,13 +40,13 @@ I deal with React for web at most times. So, cuz of this I never imagined that i
 
 Let me show a very practical comparison.
 
-![Synapse compile time preview](./compile_time.gif)
+![Synapse compile time preview](/images/articles/compose-previews/compile_time.gif)
 
 Since Synapse supports a shared UI, I run most of my builds on iOS simulators (much smaller memory footprint). As shown, a simple color change needed a few seconds for rebuild & installation (_though this would be much faster for android builds, but still needs the same process_).
 
 What about **Previews**?
 
-![Synapse preview time preview](./preview_time.gif)
+![Synapse preview time preview](/images/articles/compose-previews/preview_time.gif)
 
 Bamm! Instant because preview compilation doesn't care about the rest other than the element at hand.
 
@@ -77,7 +73,7 @@ ModelSelectionRadioMenu(
 ```
 
 This renders:
-![lone render](./lone_render.png)
+![lone render](/images/articles/compose-previews/lone_render.png)
 
 Hmm, pretty basic right? What if I want to view the same with different string values?
 
@@ -87,6 +83,7 @@ Now for the same `ModelSelectionRadioMenu`
 
 <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem'}}>
 <div>
+
 ```kotlin
 private class ModelSelectPreviewProvider : PreviewParameterProvider<ModelSelectionParamDetails> {
     override val values = sequenceOf(
@@ -128,7 +125,7 @@ private fun ModelSelectionRadioMenuPreviewMultiple(
 </div>
 
 This renders:
-![multi-render](./multi_render.png)
+![multi-render](/images/articles/compose-previews/multi_render.png)
 
 ### Display size fragmentation
 
@@ -159,13 +156,11 @@ With Synapse being a KMP app targeting Android & iOS, I can quickly iterate thro
 
 Alternatively, triggering the **Check UI** mode on IntelliJ also generates screen previews.
 
-![Generate multiple previews.](./preview_generate.png)
+![Generate multiple previews.](/images/articles/compose-previews/preview_generate.png)
 
 ### Nice! But how does @Preview work?
 
 This will need an article on its own. Will add it soon!
 
-:::success
-If you have any feedback or suggestions, please feel free to reach out to me.
-Until then, consider starring the [project](https://github.com/alwinsDen/synapse-ai) and follow me on [GitHub](https://github.com/alwinsDen).
-:::
+> **Tip**: If you have any feedback or suggestions, please feel free to reach out to me.
+> Until then, consider starring the [project](https://github.com/alwinsDen/synapse-ai) and follow me on [GitHub](https://github.com/alwinsDen).

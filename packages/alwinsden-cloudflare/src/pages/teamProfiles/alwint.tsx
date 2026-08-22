@@ -45,14 +45,14 @@ const AlwinT = () => {
           <div className={styles.section}>
             <p className={styles['section-label']}>SOME THINGS I WROTE AND DEMOS:</p>
             <a
-              href="https://docs.alwinsden.com/articles/compose-previews"
+              href="/articles/compose-previews"
               className={styles['article-link']}
               target="_blank"
             >
               *Compose Previews - A Relaxed Development.
             </a>
             <a
-              href="https://docs.alwinsden.com/articles/kmp-gauth-multiplatform"
+              href="/articles/kmp-gauth-multiplatform"
               className={styles['article-link']}
               target="_blank"
             >

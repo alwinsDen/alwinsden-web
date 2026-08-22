@@ -16,6 +16,10 @@ dist-ssr
 .react-router
 .wrangler
 
+# Docusaurus generated files
+article-site/.docusaurus
+article-site/build
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -5,10 +5,19 @@ React Router v7 (framework mode, SSR) site for alwinsden.com, deployed as a Clou
 ## Commands (run from repo root)
 
 - `pnpm dev:cloudflare` — dev server (`react-router dev`; server code runs in workerd via @cloudflare/vite-plugin)
+- `pnpm --filter alwinsden-cloudflare build` — build the Cloudflare Worker application
 - `pnpm --filter alwinsden-cloudflare lint` and `typecheck` — only app with lint/typecheck scripts
 - `pnpm --filter alwinsden-cloudflare preview` — production build served locally in workerd
 - `pnpm --filter alwinsden-cloudflare run deploy` — `wrangler deploy` (needs `wrangler login` or `CLOUDFLARE_API_TOKEN`)
 - Build output goes to the repo root `dist/cloudflare` (`client/` assets + `server/` worker bundle; set via `buildDirectory` in `react-router.config.ts`).
+- Articles are native routes at `/articles` and `/articles/:slug` (no separate article app anymore).
+
+## Writing articles
+
+1. Create `src/articles/posts/<slug>/index.mdx` exporting a `meta` object: `{ slug, title, date (YYYY-MM-DD), description, author, cover }`.
+2. Put images in `public/images/articles/<slug>/` and reference them by absolute URL in the markdown (`/images/articles/<slug>/foo.png`) — relative markdown image paths don't work through MDX+Vite.
+3. Nothing else: the list page and `/articles/:slug` discover posts automatically via `import.meta.glob` in `src/articles/posts.ts`; no route registration needed.
+4. Admonitions are written as blockquotes: `> **Note**: ...` / `> **Warning**: ...` / `> **Tip**: ...` (styled yellow-accent in `src/articles/common.module.css`).
 
 ## Constraints & gotchas
 
@@ -16,7 +25,7 @@ React Router v7 (framework mode, SSR) site for alwinsden.com, deployed as a Clou
 - SEO meta is per-route `meta()` exports in route modules (`src/root.tsx` has the defaults). The old Pages `functions/[[path]].js` HTMLRewriter hack is gone — don't recreate it.
 - `react-router.config.ts` needs `future.v8_viteEnvironmentApi: true` — @cloudflare/vite-plugin and React Router's classic two-pass build disagree on output dirs without it (build fails on a missing `.vite/manifest.json`).
 - Package is `"type": "module"` — required because @cloudflare/vite-plugin is ESM-only.
-- `react-router-dom@7` is a deliberate direct dep: RR's dev server adds `react-router-dom` to `optimizeDeps.include` whenever it's resolvable, and with the hoisted root `node_modules` it finds Docusaurus's v5 copy → dev crashes with "No matching export … `useHistory`/`Switch`". The package-local v7 shadows it. Don't remove it.
+- `react-router-dom@7` is a deliberate direct dep: RR's dev server adds `react-router-dom` to `optimizeDeps.include` whenever it's resolvable, and with the hoisted root `node_modules` it finds other packages' copies → dev crashes with "No matching export … `useHistory`/`Switch`". The package-local v7 shadows it. Don't remove it.
 - Deploy config is generated at build time (`dist/cloudflare/server/wrangler.json` + `.wrangler/deploy/config.json`); source config is `wrangler.jsonc`, worker entry is `workers/app.ts`. Run `pnpm --filter alwinsden-cloudflare exec wrangler types` after changing bindings.
 - `public/wasm-transpiler/build/*` are committed build artifacts compiled from `external/wasm-transpiler/src/main.cpp` (C++ → WASM, built externally). Don't hand-edit; recompile and replace instead.
 - Site routes are declared in `src/routes.ts` (RR framework convention), unlike ai-keyboard's file-based routes.

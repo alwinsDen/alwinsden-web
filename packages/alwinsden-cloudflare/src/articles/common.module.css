@@ -1,59 +1,152 @@
-.article {
-    width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 20px;
-    background-color: #ffffff;
-    padding-left: 20px;
-    padding-right: 20px;
+/* Shared styles for the /articles list and article pages. Everything is scoped
+   under .article-list / .article so nothing leaks into other routes. */
+
+.article,
+.article-list {
+  width: 600px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+  background-color: #ffffff;
 }
 
-h1 {
-    margin: 5px 0px;
+/* ── LIST PAGE ── */
+.list-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 30px;
 }
 
-.publishedOn {
-    font-size: 18px;
-    color: #6d6d6d;
+.card {
+  display: block;
+  border: 1px solid #000;
+  margin-bottom: 24px;
+  padding: 20px;
+  text-decoration: none;
+  color: #000;
+  background: #fff;
+  transition: box-shadow 0.15s ease;
 
+  &:hover {
+    box-shadow: 6px 6px 0 #000;
+    text-decoration: none;
+  }
 }
 
-.imageController {
-    width: 100%;
+.card-cover {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #000;
+  margin: -20px -20px 16px;
+  width: calc(100% + 40px);
 }
 
-.summaryref {
-    font-style: italic;
+.card-title {
+  font-family: 'EB Garamond', serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+  margin: 0 0 4px;
 }
 
-h2 {
-    margin-bottom: 5px;
+.byline {
+  font-size: 0.95rem;
+  color: #6d6d6d;
+  margin: 0 0 10px;
 }
 
-p {
-    margin-bottom: 5px;
-    text-align: justify;
+.card-description {
+  font-size: 1rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ── ARTICLE PAGE ── */
+.article-title {
+  font-family: 'EB Garamond', serif;
+  font-weight: 400;
+  font-size: 2.4rem;
+  line-height: 1.15;
+  margin: 0 0 6px;
+}
+
+.article h1,
+.article h2,
+.article h3,
+.article h4 {
+  margin: 26px 0 8px;
+}
+
+.article p {
+  margin: 0 0 12px;
+  text-align: justify;
+  line-height: 23px;
+}
+
+.article img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 14px auto;
+}
+
+.article ul,
+.article ol {
+  padding-left: 22px;
+  margin: 0 0 12px;
+
+  li {
     line-height: 23px;
+    margin-bottom: 6px;
+  }
 }
 
-.codeblock {
-    width: 100%;
-    overflow-x: scroll;
+.article a {
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-code {
-    font-family: "Fira Code", monospace;
-    font-size: .8rem;
+.article pre {
+  width: 100%;
+  overflow-x: scroll;
+  border: 1px solid #e0e0e0;
+  padding: 14px;
+  background: #fafafa;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.article code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.8rem;
+}
+
+/* Admonitions are written as "> **Note**: ..." blockquotes in MDX */
+.article blockquote {
+  border-left: 4px solid #F3DB00;
+  background: #fffbe6;
+  margin: 16px 0;
+  padding: 10px 16px;
+
+  p {
+    margin: 0;
+  }
 }
 
 @media screen and (max-width: 500px) {
-    .article {
-        width: 100vw;
-        padding: 15px;
-    }
+  .article,
+  .article-list {
+    width: 100vw;
+    padding: 20px 15px 40px;
+  }
 
-    p,
-    .codeblock {
-        font-size: clamp(.7rem, 5vw, 1.0rem);
-    }
+  .article p,
+  .article pre {
+    font-size: clamp(0.7rem, 4vw, 0.9rem);
+  }
+
+  .article-title {
+    font-size: 1.9rem;
+  }
 }
