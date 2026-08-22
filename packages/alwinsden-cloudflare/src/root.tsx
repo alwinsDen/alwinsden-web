@@ -15,24 +15,26 @@ export const meta: MetaFunction = () => [
 
 export const links: LinksFunction = () => [
   { rel: 'icon', type: 'image/png', href: icon },
-  { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-  { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
   {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Fredericka+the+Great&display=swap',
+    rel: 'preload',
+    href: '/fonts/montserrat-latin.woff2',
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
   },
   {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap',
-  },
-  { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Jacquard+24&display=swap' },
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap',
+    rel: 'preload',
+    href: '/fonts/eb-garamond-latin.woff2',
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
   },
   {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap',
+    rel: 'preload',
+    href: '/fonts/jacquard-24-latin.woff2',
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: 'anonymous',
   },
 ];
 

@@ -1,3 +1,5 @@
+@import './fonts.css';
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -29,4 +31,3 @@ html {
     scrollbar-width: auto;
   }
 }
-
