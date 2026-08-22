@@ -101,5 +101,5 @@ const styles = StyleSheet.create({
     paddingVertical: 0,
   },
   userMessageText: { fontSize: 18, lineHeight: 28 },
-  assistantMessageText: { fontSize: 20, marginTop: 15, marginBottom: 15 },
+  assistantMessageText: { fontSize: 18, marginTop: 15, marginBottom: 15 },
 });

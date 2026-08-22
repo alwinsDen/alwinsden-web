@@ -93,6 +93,7 @@ export function ChatComposer({
               mode="contained-tonal"
               onPress={() => setAttachmentMenuVisible(true)}
               accessibilityLabel="Add attachment"
+              size={18}
             />
           }>
           <Menu.Item leadingIcon="image" title="Photo Library" onPress={() => runAttachmentPicker(onLibrary)} />
@@ -113,7 +114,6 @@ export function ChatComposer({
               <Text variant="labelLarge" style={styles.modelButtonText}>
                 {selectedModel.label}
               </Text>
-              <Icon source="chevron-down" size={18} color={theme.colors.onSurfaceVariant} />
             </Pressable>
           }>
           {models.map((model) => (
@@ -129,13 +129,14 @@ export function ChatComposer({
           ))}
         </Menu>
         <View style={styles.spacer} />
-        <IconButton icon="microphone-outline" mode="contained-tonal" onPress={() => undefined} accessibilityLabel="Voice input" />
+        <IconButton size={18} icon="microphone-outline" mode="contained-tonal" onPress={() => undefined} accessibilityLabel="Voice input" />
         <IconButton
           icon="arrow-up"
           mode="contained"
           disabled={!canSend}
           onPress={onSend}
           accessibilityLabel="Send message"
+          size={18}
         />
       </View>
     </View>
@@ -148,15 +149,17 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.two,
     borderRadius: 24,
     paddingHorizontal: Spacing.three,
-    paddingTop: Spacing.three,
+    paddingTop: Spacing.one,
     paddingBottom: Spacing.three,
+    borderColor: "grey",
+    borderWidth: 1,
   },
   attachmentRow: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.two, paddingTop: Spacing.three },
   thumbWrap: { marginTop: Spacing.two, marginRight: Spacing.one, paddingLeft: 8 },
   thumbRemove: { position: 'absolute', top: -Spacing.one, right: -Spacing.one, margin: 0, width: 20, height: 20 },
   inputRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.two, marginTop: Spacing.two },
   modelButton: {
-    minHeight: 50,
+    paddingVertical: 10,
     borderRadius: 25,
     paddingHorizontal: Spacing.three,
     flexDirection: 'row',
@@ -167,6 +170,6 @@ const styles = StyleSheet.create({
   modelButtonText: { color: '#e5e1de' },
   spacer: { flex: 1 },
   input: { backgroundColor: 'transparent', paddingHorizontal: 0, minHeight: 62, maxHeight: 140 },
-  inputContent: { paddingLeft: 8, paddingRight: 8, color: '#c6c3c0', fontSize: 18 },
+  inputContent: { paddingLeft: 8, paddingRight: 8, color: '#c6c3c0', fontSize: 16 },
   menu: { borderRadius: 16 },
 });

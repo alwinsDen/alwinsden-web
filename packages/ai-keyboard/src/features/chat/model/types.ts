@@ -10,9 +10,9 @@ export type ChatMessage = {
 };
 
 export const models = [
-  { id: 'test_01', label: 'test_01' },
-  { id: 'stest_02', label: 'test_02' },
-  { id: 'test_03', label: 'test_03' },
+  { id: 'Sonnect 4.5', label: 'Sonnect 4.5' },
+  { id: 'GLM 4.6', label: 'GLM 4.6' },
+  { id: 'Sonnect 4.6', label: 'Sonnect 4.6' },
 ] as const;
 
 export type ModelId = (typeof models)[number]['id'];
