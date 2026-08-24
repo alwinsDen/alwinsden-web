@@ -58,13 +58,13 @@
   background: #000;
   color: #fff;
   padding: 20px 31px;
-  border-radius: 50px;
   text-decoration: none;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
   width: fit-content;
   border: solid 1px transparent;
+  cursor: pointer;
 
   &:hover {
     background: #fff;
