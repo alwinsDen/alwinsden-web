@@ -51,13 +51,30 @@ export const ChatMessageList = forwardRef<FlatList<ChatMessage>, { messages: Cha
         onContentSizeChange={() => ref && typeof ref !== 'function' && ref.current?.scrollToEnd({ animated: true })}
         ListEmptyComponent={
           <View style={styles.emptyState}>
-            <View style={[styles.emptyIconWrap, { backgroundColor: theme.colors.secondaryContainer }]}>
-              <Icon source="chat-outline" size={36} color={theme.colors.onSecondaryContainer} />
+            <View style={styles.emptyIconWrap}>
+              <View
+                style={[styles.emptyIconRing, { borderColor: theme.colors.secondaryContainer }]}
+              />
+              <View style={[styles.emptyIconWrap, styles.emptyIconCore, { backgroundColor: theme.colors.secondaryContainer }]}>
+                <Icon source="chat-outline" size={36} color={theme.colors.onSecondaryContainer} />
+              </View>
+              <View style={[styles.emptyChip, styles.emptyChipTopRight, { backgroundColor: theme.colors.primaryContainer }]}>
+                <Icon source="star-four-points" size={14} color={theme.colors.onPrimaryContainer} />
+              </View>
+              <View style={[styles.emptyChip, styles.emptyChipBottomLeft, { backgroundColor: theme.colors.tertiaryContainer }]}>
+                <Icon source="paperclip" size={12} color={theme.colors.onTertiaryContainer} />
+              </View>
             </View>
-            <Text variant="titleMedium">No messages yet</Text>
-            <Text variant="bodyMedium" style={[styles.emptySubtitle, { color: theme.colors.onSurfaceVariant }]}>
-              Send a message to start the conversation.
-            </Text>
+            <View style={styles.emptyTextGroup}>
+              <Text variant="titleMedium" style={styles.emptyTitle}>
+                Hi, Alwin
+              </Text>
+              <Text
+                variant="bodyMedium"
+                style={[styles.emptySubtitle, styles.emptySubtitleFont, { color: theme.colors.onSurfaceVariant }]}>
+                Lets work on something!
+              </Text>
+            </View>
           </View>
         }
       />
@@ -71,7 +88,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: Spacing.two,
+    gap: Spacing.three,
     paddingBottom: Spacing.six,
   },
   emptyIconWrap: {
@@ -80,9 +97,39 @@ const styles = StyleSheet.create({
     borderRadius: 36,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: Spacing.one,
   },
-  emptySubtitle: { textAlign: 'center' },
+  emptyIconRing: {
+    position: 'absolute',
+    width: 104,
+    height: 104,
+    borderRadius: 52,
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    opacity: 0.5,
+  },
+  emptyIconCore: {
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 6,
+  },
+  emptyChip: {
+    position: 'absolute',
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 3,
+    borderColor: 'rgba(0, 0, 0, 0.85)',
+  },
+  emptyChipTopRight: { top: -4, right: -14 },
+  emptyChipBottomLeft: { bottom: -2, left: -14 },
+  emptyTextGroup: { alignItems: 'center', gap: Spacing.one, maxWidth: 260, marginTop: 10 },
+  emptyTitle: { fontFamily: 'EBGaramond_500Medium', fontSize: 24, lineHeight: 30 },
+  emptySubtitle: { textAlign: 'center', fontSize: 18 },
+  emptySubtitleFont: { fontFamily: 'EBGaramond_400Regular' },
   messageRow: { flexDirection: 'row' },
   rowUser: { justifyContent: 'flex-end' },
   rowAssistant: { justifyContent: 'flex-start' },

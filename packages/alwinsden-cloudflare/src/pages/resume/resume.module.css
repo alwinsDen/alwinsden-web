@@ -1,0 +1,159 @@
+.resume-entry {
+  background-color: #fff;
+  width: 720px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.contact-row {
+  display: flex;
+  gap: 24px;
+}
+
+.contact-link {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #0000ee;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.section {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-label {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #6d6d6d;
+  margin: 0;
+  border-bottom: 1px solid #000;
+  padding-bottom: 6px;
+}
+
+.job-block {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.role-block {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.entry-company {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.entry-company-note {
+  font-weight: 400;
+  font-style: italic;
+}
+
+.entry-role {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #000;
+  margin: 10px 0 0;
+}
+
+.entry-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.entry-meta-line {
+  font-size: 0.9rem;
+  color: #6d6d6d;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.entry-link {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #0000ee;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.bullets {
+  margin: 4px 0 0;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bullet-item {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: justify;
+}
+
+.skills-text {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 23px;
+  margin: 0;
+}
+
+/* ── MOBILE ── */
+@media screen and (max-width: 500px) {
+  .resume-entry {
+    padding: 20px 15px 30px;
+    width: 100%;
+  }
+
+  .page-title {
+    font-size: 1.9rem;
+  }
+
+  .entry-header {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .entry-meta {
+    text-align: left;
+  }
+
+  .bullet-item {
+    font-size: clamp(0.85rem, 4vw, 0.95rem);
+    text-align: left;
+  }
+}

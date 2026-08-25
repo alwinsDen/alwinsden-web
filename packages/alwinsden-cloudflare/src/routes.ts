@@ -3,6 +3,7 @@ import { type RouteConfig, index, route } from '@react-router/dev/routes';
 export default [
   index('./App.tsx'),
   route('alwin', './pages/teamProfiles/alwint.tsx'),
+  route('resume', './pages/resume/resume.tsx'),
   route('articles', './pages/articles/articleList.tsx'),
   route('articles/:slug', './pages/articles/articlePost.tsx'),
   route('demo/wasm-transpiler', './apps/wasm-transpiler/index.tsx'),
