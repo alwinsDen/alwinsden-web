@@ -58,7 +58,7 @@ export function useChat() {
       ]);
       setAwaitingReply(false);
       replyTimeoutRef.current = null;
-    }, 500);
+    }, 2000);
   };
 
   const startNewChat = () => {

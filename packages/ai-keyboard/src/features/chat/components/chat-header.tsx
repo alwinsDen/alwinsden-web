@@ -15,7 +15,7 @@ export function ChatHeader({ onMenu }: { onMenu: () => void }) {
         onPress={onMenu}
         accessibilityLabel="Open navigation"
       />
-      <Text variant="titleMedium" style={styles.topBarTitle}>AI Chat</Text>
+      <Text variant="titleMedium" style={styles.topBarTitle}>Leptos Agent</Text>
       <View style={styles.topBarSpacer} />
     </View>
   );

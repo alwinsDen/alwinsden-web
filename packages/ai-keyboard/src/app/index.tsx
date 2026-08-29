@@ -26,7 +26,7 @@ export default function ChatScreen() {
     <SafeAreaView style={[styles.screen, { backgroundColor: theme.colors.background }]} edges={['top', 'bottom']}>
       <KeyboardAvoidingView style={styles.screen} behavior="padding">
         <ChatHeader onMenu={() => setSidebarVisible(true)} />
-        <ChatMessageList ref={listRef} messages={chat.messages} />
+        <ChatMessageList ref={listRef} messages={chat.messages} loading={chat.awaitingReply} />
         <ChatComposer
           input={chat.input}
           onInputChange={chat.setInput}

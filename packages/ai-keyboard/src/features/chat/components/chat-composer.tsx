@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Pressable, StyleSheet, TextInput as RNTextInput, View } from 'react-native';
+import { Keyboard, Pressable, StyleSheet, TextInput as RNTextInput, View } from 'react-native';
 import { Icon, IconButton, Menu, Text, TextInput, useTheme } from 'react-native-paper';
 
 import { Spacing } from '@/constants/theme';
@@ -44,6 +44,11 @@ export function ChatComposer({
     await picker();
   };
 
+  const send = () => {
+    Keyboard.dismiss();
+    onSend();
+  };
+
   return (
     <View style={[styles.composer, { backgroundColor: theme.colors.elevation.level2 }]}>
       {attachments.length > 0 && (
@@ -78,7 +83,7 @@ export function ChatComposer({
           activeUnderlineColor="transparent"
           cursorColor={theme.colors.primary}
           selectionColor={theme.colors.primary}
-          onSubmitEditing={onSend}
+          onSubmitEditing={send}
         />
       </Pressable>
       <View style={styles.inputRow}>
@@ -134,7 +139,7 @@ export function ChatComposer({
           icon="arrow-up"
           mode="contained"
           disabled={!canSend}
-          onPress={onSend}
+          onPress={send}
           accessibilityLabel="Send message"
           size={18}
         />
@@ -170,6 +175,6 @@ const styles = StyleSheet.create({
   modelButtonText: { color: '#e5e1de' },
   spacer: { flex: 1 },
   input: { backgroundColor: 'transparent', paddingHorizontal: 0, minHeight: 62, maxHeight: 140 },
-  inputContent: { paddingLeft: 8, paddingRight: 8, color: '#c6c3c0', fontSize: 16 },
+  inputContent: { paddingLeft: 8, paddingRight: 8, color: '#c6c3c0', fontSize: 15, fontFamily: 'Geist_400Regular' },
   menu: { borderRadius: 16 },
 });

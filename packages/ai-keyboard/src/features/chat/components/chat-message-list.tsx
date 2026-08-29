@@ -1,13 +1,42 @@
-import { forwardRef } from 'react';
+import { useEffect, forwardRef, useRef, useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
 import { Icon, Text, useTheme } from 'react-native-paper';
 
+function useElapsedSeconds() {
+  const [seconds, setSeconds] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => setSeconds((s) => s + 1), 100);
+    return () => clearInterval(interval);
+  }, []);
+  return seconds;
+}
+
+function LoadingFooter() {
+  const theme = useTheme();
+  const deciseconds = useElapsedSeconds();
+  const total = deciseconds / 10;
+  const elapsed = total < 60 ? `${total.toFixed(1)}s` : `${Math.floor(total / 60)}m ${(total % 60).toFixed(1)}s`;
+
+  return (
+    <View style={styles.loadingRow}>
+      <LoadingGrid />
+      <Text variant="bodyMedium" style={[styles.loadingLabel, { color: theme.colors.onSurfaceVariant }]}>
+        Leptos thinking
+      </Text>
+      <Text variant="bodySmall" style={[styles.loadingTimer, { color: theme.colors.onSurfaceVariant }]}>
+        {elapsed}
+      </Text>
+    </View>
+  );
+}
+
 import { Spacing } from '@/constants/theme';
 import { AttachmentView } from '@/features/chat/components/attachment-view';
+import { LoadingGrid } from '@/features/chat/components/loading-grid';
 import type { ChatMessage } from '@/features/chat/model/types';
 
-export const ChatMessageList = forwardRef<FlatList<ChatMessage>, { messages: ChatMessage[] }>(
-  function ChatMessageList({ messages }, ref) {
+export const ChatMessageList = forwardRef<FlatList<ChatMessage>, { messages: ChatMessage[]; loading: boolean }>(
+  function ChatMessageList({ messages, loading }, ref) {
     const theme = useTheme();
 
     return (
@@ -49,6 +78,7 @@ export const ChatMessageList = forwardRef<FlatList<ChatMessage>, { messages: Cha
         contentContainerStyle={styles.listContent}
         keyboardShouldPersistTaps="handled"
         onContentSizeChange={() => ref && typeof ref !== 'function' && ref.current?.scrollToEnd({ animated: true })}
+        ListFooterComponent={loading ? <LoadingFooter /> : null}
         ListEmptyComponent={
           <View style={styles.emptyState}>
             <View style={styles.emptyIconWrap}>
@@ -71,7 +101,7 @@ export const ChatMessageList = forwardRef<FlatList<ChatMessage>, { messages: Cha
               </Text>
               <Text
                 variant="bodyMedium"
-                style={[styles.emptySubtitle, styles.emptySubtitleFont, { color: theme.colors.onSurfaceVariant }]}>
+                style={[styles.emptySubtitle, { color: theme.colors.onSurfaceVariant }]}>
                 Lets work on something!
               </Text>
             </View>
@@ -128,8 +158,7 @@ const styles = StyleSheet.create({
   emptyChipBottomLeft: { bottom: -2, left: -14 },
   emptyTextGroup: { alignItems: 'center', gap: Spacing.one, maxWidth: 260, marginTop: 10 },
   emptyTitle: { fontFamily: 'EBGaramond_500Medium', fontSize: 24, lineHeight: 30 },
-  emptySubtitle: { textAlign: 'center', fontSize: 18 },
-  emptySubtitleFont: { fontFamily: 'EBGaramond_400Regular' },
+  emptySubtitle: { textAlign: 'center', fontSize: 15, fontFamily: 'Geist_400Regular' },
   messageRow: { flexDirection: 'row' },
   rowUser: { justifyContent: 'flex-end' },
   rowAssistant: { justifyContent: 'flex-start' },
@@ -147,6 +176,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
     paddingVertical: 0,
   },
-  userMessageText: { fontSize: 18, lineHeight: 28 },
-  assistantMessageText: { fontSize: 18, marginTop: 15, marginBottom: 15 },
+  userMessageText: { fontSize: 15, lineHeight: 22, fontFamily: 'Geist_400Regular' },
+  assistantMessageText: { fontSize: 15, lineHeight: 23, marginTop: 15, marginBottom: 15, fontFamily: 'Geist_400Regular' },
+  loadingRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.two,
+    paddingVertical: Spacing.one,
+  },
+  loadingLabel: { fontSize: 12, fontFamily: 'Geist_500Medium' },
+  loadingTimer: { fontVariant: ['tabular-nums'], fontSize: 11, fontFamily: 'Geist_400Regular' },
 });
