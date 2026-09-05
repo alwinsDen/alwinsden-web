@@ -5,8 +5,10 @@
   "dependencies": {
     "@alwinsden-unified-ui/react-native-ui": "workspace:*",
     "@expo-google-fonts/eb-garamond": "^0.4.3",
+    "@expo-google-fonts/geist": "0.4.2",
     "@expo/ui": "~57.0.10",
     "@expo/vector-icons": "^15.1.1",
+    "@tanstack/react-query": "^5.102.8",
     "expo": "~57.0.12",
     "expo-constants": "~57.0.10",
     "expo-dev-client": "~57.0.11",

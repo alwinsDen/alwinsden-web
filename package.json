@@ -9,8 +9,8 @@
   },
   "scripts": {
     "dev:cloudflare": "pnpm --filter alwinsden-cloudflare dev",
-    "dev:aikb:ios": "pnpm --filter ai-keyboard exec expo run:ios",
-    "dev:aikb:android": "pnpm --filter ai-keyboard exec expo run:android",
+    "dev:ak:ios": "pnpm --filter ai-keyboard exec expo run:ios",
+    "dev:ak:android": "pnpm --filter ai-keyboard exec expo run:android",
     "build:ui": "pnpm --filter @alwinsden-unified-ui/core build && pnpm --filter @alwinsden-unified-ui/web-ui build && pnpm --filter @alwinsden-unified-ui/react-native-ui build",
     "build:cloudflare": "pnpm build:ui && pnpm --filter alwinsden-cloudflare build",
     "preview:cloudflare": "pnpm --filter alwinsden-cloudflare preview",

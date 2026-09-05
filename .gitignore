@@ -3,3 +3,4 @@ node_modules
 dist
 .pnpm-store
 target
+_tmp_*
