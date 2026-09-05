@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { Keyboard, Pressable, StyleSheet, TextInput as RNTextInput, View } from 'react-native';
 import { Icon, IconButton, Menu, Text, TextInput, useTheme } from 'react-native-paper';
 
-import { Spacing } from '@/constants/theme';
+import { Spacing, Colors } from '@/constants/theme';
 import { AttachmentView } from '@/features/chat/components/attachment-view';
 import { models, type Attachment, type ModelId } from '@/features/chat/model/types';
 
@@ -142,6 +142,8 @@ export function ChatComposer({
           onPress={send}
           accessibilityLabel="Send message"
           size={18}
+          containerColor={canSend ? Colors.brand : undefined}
+          iconColor={canSend ? Colors.brandOn : undefined}
         />
       </View>
     </View>
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Spacing.three,
     paddingTop: Spacing.one,
     paddingBottom: Spacing.three,
-    borderColor: "grey",
+    borderColor: Colors.brandBorder,
     borderWidth: 1,
   },
   attachmentRow: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.two, paddingTop: Spacing.three },
@@ -170,11 +172,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.one,
-    backgroundColor: '#303030',
+    backgroundColor: Colors.backgroundSelected,
   },
-  modelButtonText: { color: '#e5e1de' },
+  modelButtonText: { color: Colors.text },
   spacer: { flex: 1 },
   input: { backgroundColor: 'transparent', paddingHorizontal: 0, minHeight: 62, maxHeight: 140 },
-  inputContent: { paddingLeft: 8, paddingRight: 8, color: '#c6c3c0', fontSize: 15, fontFamily: 'Geist_400Regular' },
+  inputContent: { paddingLeft: 8, paddingRight: 8, color: Colors.text, fontSize: 15, fontFamily: 'Geist_400Regular' },
   menu: { borderRadius: 16 },
 });

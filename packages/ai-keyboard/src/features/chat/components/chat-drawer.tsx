@@ -4,7 +4,7 @@ import { Icon, IconButton, Text, useTheme } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { RnButton } from '@alwinsden-unified-ui/react-native-ui';
-import { Spacing } from '@/constants/theme';
+import { Spacing, Colors } from '@/constants/theme';
 
 export function ChatDrawer({
   visible,
@@ -98,9 +98,9 @@ const styles = StyleSheet.create({
   drawerContent: { flex: 1, paddingHorizontal: Spacing.two },
   drawerBackdrop: { flex: 1 },
   drawerHeader: { minHeight: 64, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  drawerTitle: { color: '#f4f0ed', paddingHorizontal: Spacing.two },
+  drawerTitle: { color: Colors.text, paddingHorizontal: Spacing.two },
   drawerSectionLabel: {
-    color: '#aaa3ad',
+    color: 'Colors.textSecondary',
     paddingHorizontal: Spacing.two,
     paddingTop: Spacing.four,
     paddingBottom: Spacing.one,
@@ -115,5 +115,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: Spacing.three,
   },
-  drawerActionText: { color: '#f4f0ed' },
+  drawerActionText: { color: Colors.text },
 });

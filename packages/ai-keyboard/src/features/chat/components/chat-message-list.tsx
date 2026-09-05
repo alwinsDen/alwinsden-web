@@ -30,7 +30,7 @@ function LoadingFooter() {
   );
 }
 
-import { Spacing } from '@/constants/theme';
+import { Spacing, Colors } from '@/constants/theme';
 import { AttachmentView } from '@/features/chat/components/attachment-view';
 import { LoadingGrid } from '@/features/chat/components/loading-grid';
 import type { ChatMessage } from '@/features/chat/model/types';
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 3,
-    borderColor: 'rgba(0, 0, 0, 0.85)',
+    borderColor: Colors.background,
   },
   emptyChipTopRight: { top: -4, right: -14 },
   emptyChipBottomLeft: { bottom: -2, left: -14 },

@@ -13,6 +13,7 @@ import { MD3DarkTheme, PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
+import { Colors } from '@/constants/theme';
 import { queryClient } from '@/lib/query-client';
 
 SplashScreen.preventAutoHideAsync();
@@ -37,12 +38,27 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={DarkTheme}>
+    <ThemeProvider value={{ ...DarkTheme, colors: { ...DarkTheme.colors, background: Colors.background } }}>
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
           <PaperProvider
             theme={{
               ...MD3DarkTheme,
+              colors: {
+                ...MD3DarkTheme.colors,
+                primary: Colors.accent,
+                onPrimary: Colors.accentOn,
+                background: Colors.background,
+                onBackground: Colors.text,
+                surface: Colors.backgroundElement,
+                onSurface: Colors.text,
+                surfaceVariant: Colors.backgroundSelected,
+                onSurfaceVariant: Colors.textSecondary,
+                elevation: {
+                  ...MD3DarkTheme.colors.elevation,
+                  level2: Colors.backgroundElement,
+                },
+              },
               fonts: {
                 ...MD3DarkTheme.fonts,
                 bodyLarge: { ...MD3DarkTheme.fonts.bodyLarge, fontFamily: 'Geist_400Regular' },

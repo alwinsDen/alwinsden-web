@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import { IconButton, Text, useTheme } from 'react-native-paper';
 
-import { Spacing } from '@/constants/theme';
+import { Spacing, Colors } from '@/constants/theme';
 
 export function ChatHeader({ onMenu }: { onMenu: () => void }) {
   const theme = useTheme();
@@ -23,6 +23,6 @@ export function ChatHeader({ onMenu }: { onMenu: () => void }) {
 
 const styles = StyleSheet.create({
   topBar: { height: 58, flexDirection: 'row', alignItems: 'center', paddingHorizontal: Spacing.one },
-  topBarTitle: { color: '#f4f0ed', marginLeft: Spacing.one },
+  topBarTitle: { color: Colors.text, marginLeft: Spacing.one },
   topBarSpacer: { flex: 1 },
 });
