@@ -8,13 +8,14 @@
     "node": ">=24.19.0"
   },
   "scripts": {
-    "dev:cloudflare": "pnpm --filter alwinsden-cloudflare dev",
     "dev:ak:ios": "pnpm --filter ai-keyboard exec expo run:ios",
     "dev:ak:android": "pnpm --filter ai-keyboard exec expo run:android",
     "build:ui": "pnpm --filter @alwinsden-unified-ui/core build && pnpm --filter @alwinsden-unified-ui/web-ui build && pnpm --filter @alwinsden-unified-ui/react-native-ui build",
     "build:cloudflare": "pnpm build:ui && pnpm --filter alwinsden-cloudflare build",
+    "dev:cloudflare": "pnpm --filter alwinsden-cloudflare dev",
     "preview:cloudflare": "pnpm --filter alwinsden-cloudflare preview",
     "lint:cloudflare": "pnpm --filter alwinsden-cloudflare lint",
-    "typecheck:cloudflare": "pnpm --filter alwinsden-cloudflare typecheck"
+    "typecheck:cloudflare": "pnpm --filter alwinsden-cloudflare typecheck",
+    "deploy:cloudflare": "pnpm --filter alwinsden-cloudflare run deploy"
   }
 }

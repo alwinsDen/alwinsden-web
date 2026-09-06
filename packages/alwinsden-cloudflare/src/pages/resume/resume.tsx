@@ -99,6 +99,9 @@ const ResumePage = () => {
     <div className={styles['resume-entry']}>
       <h1 className={styles['page-title']}>RESUME</h1>
       <div className={styles['contact-row']}>
+        <a href="mailto:alwintv5018@gmail.com" className={styles['contact-link']}>
+          alwintv5018@gmail.com
+        </a>
         <a
           href="https://github.com/alwinsDen"
           className={styles['contact-link']}
@@ -231,11 +234,12 @@ const ResumePage = () => {
             directly on the model.
           </li>
           <li className={styles['bullet-item']}>
-            Sharing workflow for designers to collaborate with peers, plus a custom HD render
-            export feature.
+            Sharing workflow for designers to collaborate with peers, plus a custom HD render export
+            feature.
           </li>
           <li className={styles['bullet-item']}>
-            Built with <em>React Three Fiber</em>, <em>TypeScript</em> and <em>styled-components</em>.
+            Built with <em>React Three Fiber</em>, <em>TypeScript</em> and{' '}
+            <em>styled-components</em>.
           </li>
         </ul>
       </div>
