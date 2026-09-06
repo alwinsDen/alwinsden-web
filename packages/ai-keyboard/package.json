@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@types/react": "catalog:",
+    "eslint-config-expo": "~57.0.2",
     "typescript": "catalog:"
   },
   "scripts": {

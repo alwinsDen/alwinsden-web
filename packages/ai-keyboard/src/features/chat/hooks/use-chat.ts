@@ -1,37 +1,44 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from "react";
 
-import { pickFile, pickFromCamera, pickFromLibrary } from '@/features/chat/services/attachments';
-import { models, type Attachment, type ChatMessage, type ModelId } from '@/features/chat/model/types';
+import {
+  pickFile,
+  pickFromCamera,
+  pickFromLibrary,
+} from "@/features/chat/services/attachments";
+import { streamChatReply } from "@/features/chat/services/chat-api";
+import {
+  models,
+  type Attachment,
+  type ChatMessage,
+  type ModelId,
+} from "@/features/chat/model/types";
 
 export function useChat() {
   const idRef = useRef(0);
-  const replyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [attachments, setAttachments] = useState<Attachment[]>([]);
   const [selectedModelId, setSelectedModelId] = useState<ModelId>(models[0].id);
   const [awaitingReply, setAwaitingReply] = useState(false);
-
-  useEffect(() => {
-    return () => {
-      if (replyTimeoutRef.current) clearTimeout(replyTimeoutRef.current);
-    };
-  }, []);
 
   const nextId = () => {
     idRef.current += 1;
     return String(idRef.current);
   };
 
-  const canSend = !awaitingReply && (input.trim().length > 0 || attachments.length > 0);
-  const selectedModel = models.find((model) => model.id === selectedModelId) ?? models[0];
+  const canSend =
+    !awaitingReply && (input.trim().length > 0 || attachments.length > 0);
+  const selectedModel =
+    models.find((model) => model.id === selectedModelId) ?? models[0];
 
   const addAttachment = (attachment: Attachment) => {
     setAttachments((current) => [...current, attachment]);
   };
 
   const removeAttachment = (index: number) => {
-    setAttachments((current) => current.filter((_, attachmentIndex) => attachmentIndex !== index));
+    setAttachments((current) =>
+      current.filter((_, attachmentIndex) => attachmentIndex !== index),
+    );
   };
 
   const chooseAttachment = async (picker: () => Promise<Attachment | null>) => {
@@ -43,27 +50,56 @@ export function useChat() {
     const text = input.trim();
     if (!canSend) return;
 
-    setMessages((current) => [...current, { id: nextId(), role: 'user', text, attachments }]);
-    setInput('');
+    const replyId = nextId();
+    setMessages((current) => [
+      ...current,
+      { id: nextId(), role: "user", text, attachments },
+    ]);
+    setInput("");
     setAttachments([]);
     setAwaitingReply(true);
+    setMessages((current) => [
+      ...current,
+      { id: replyId, role: "assistant", text: "", attachments: [] },
+    ]);
 
-    replyTimeoutRef.current = setTimeout(() => {
-      const replyText = text
-        ? `Placeholder reply. The AI backend isn't wired up yet.\n\nYou said: "${text}"`
-        : 'Placeholder reply. The AI backend is not wired up yet.';
-      setMessages((current) => [
-        ...current,
-        { id: nextId(), role: 'assistant', text: replyText, attachments: [] },
-      ]);
-      setAwaitingReply(false);
-      replyTimeoutRef.current = null;
-    }, 2000);
+    const appendToReply = (append: (message: ChatMessage) => ChatMessage) => {
+      setMessages((current) =>
+        current.map((message) =>
+          message.id === replyId ? append(message) : message,
+        ),
+      );
+    };
+
+    void streamChatReply(text || "(attachments only)", {
+      onDelta: (delta) =>
+        appendToReply((message) => ({
+          ...message,
+          text: message.text + delta,
+        })),
+      onDone: ({ sources, followUps }) => {
+        appendToReply((message) => ({ ...message, sources, followUps }));
+        setAwaitingReply(false);
+      },
+      onError: () => {
+        const showPlaceholder = () => {
+          appendToReply((message) => ({
+            ...message,
+            text:
+              message.text ||
+              `Placeholder reply. The AI backend isn't wired up yet.\n\nYou said: "${text || "(attachments only)"}"`,
+          }));
+          setAwaitingReply(false);
+        };
+        // Keep the loader visible a moment so it doesn't just flash by.
+        setTimeout(showPlaceholder, 2000);
+      },
+    });
   };
 
   const startNewChat = () => {
     setMessages([]);
-    setInput('');
+    setInput("");
     setAttachments([]);
   };
 

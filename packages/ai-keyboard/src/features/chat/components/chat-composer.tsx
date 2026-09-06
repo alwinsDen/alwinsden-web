@@ -1,10 +1,17 @@
-import { useRef, useState } from 'react';
-import { Keyboard, Pressable, StyleSheet, TextInput as RNTextInput, View } from 'react-native';
-import { Icon, IconButton, Menu, Text, TextInput, useTheme } from 'react-native-paper';
+import { useRef, useState } from "react";
+import {
+  Keyboard,
+  Pressable,
+  StyleSheet,
+  TextInput as RNTextInput,
+  View,
+} from "react-native";
+import { IconButton, Menu, TextInput, useTheme } from "react-native-paper";
 
-import { Spacing, Colors } from '@/constants/theme';
-import { AttachmentView } from '@/features/chat/components/attachment-view';
-import { models, type Attachment, type ModelId } from '@/features/chat/model/types';
+import { Spacing, Colors, FontSize } from "@/constants/theme";
+import { AttachmentView } from "@/features/chat/components/attachment-view";
+import { ModelPicker } from "@/features/chat/components/model-picker";
+import { type Attachment, type ModelId } from "@/features/chat/model/types";
 
 type ChatComposerProps = {
   input: string;
@@ -36,8 +43,6 @@ export function ChatComposer({
   const theme = useTheme();
   const inputRef = useRef<RNTextInput>(null);
   const [attachmentMenuVisible, setAttachmentMenuVisible] = useState(false);
-  const [modelMenuVisible, setModelMenuVisible] = useState(false);
-  const selectedModel = models.find((model) => model.id === selectedModelId) ?? models[0];
 
   const runAttachmentPicker = async (picker: () => Promise<void>) => {
     setAttachmentMenuVisible(false);
@@ -50,7 +55,12 @@ export function ChatComposer({
   };
 
   return (
-    <View style={[styles.composer, { backgroundColor: theme.colors.elevation.level2 }]}>
+    <View
+      style={[
+        styles.composer,
+        { backgroundColor: theme.colors.elevation.level2 },
+      ]}
+    >
       {attachments.length > 0 && (
         <View style={styles.attachmentRow}>
           {attachments.map((attachment, index) => (
@@ -100,41 +110,33 @@ export function ChatComposer({
               accessibilityLabel="Add attachment"
               size={18}
             />
-          }>
-          <Menu.Item leadingIcon="image" title="Photo Library" onPress={() => runAttachmentPicker(onLibrary)} />
-          <Menu.Item leadingIcon="camera" title="Camera" onPress={() => runAttachmentPicker(onCamera)} />
-          <Menu.Item leadingIcon="file" title="File" onPress={() => runAttachmentPicker(onFile)} />
+          }
+        >
+          <Menu.Item
+            leadingIcon="image"
+            title="Photo Library"
+            onPress={() => runAttachmentPicker(onLibrary)}
+          />
+          <Menu.Item
+            leadingIcon="camera"
+            title="Camera"
+            onPress={() => runAttachmentPicker(onCamera)}
+          />
+          <Menu.Item
+            leadingIcon="file"
+            title="File"
+            onPress={() => runAttachmentPicker(onFile)}
+          />
         </Menu>
-        <Menu
-          visible={modelMenuVisible}
-          onDismiss={() => setModelMenuVisible(false)}
-          anchorPosition="top"
-          contentStyle={styles.menu}
-          anchor={
-            <Pressable
-              style={styles.modelButton}
-              onPress={() => setModelMenuVisible(true)}
-              accessibilityRole="button"
-              accessibilityLabel="Choose model">
-              <Text variant="labelLarge" style={styles.modelButtonText}>
-                {selectedModel.label}
-              </Text>
-            </Pressable>
-          }>
-          {models.map((model) => (
-            <Menu.Item
-              key={model.id}
-              title={model.label}
-              leadingIcon={model.id === selectedModel.id ? 'check' : undefined}
-              onPress={() => {
-                onModelChange(model.id);
-                setModelMenuVisible(false);
-              }}
-            />
-          ))}
-        </Menu>
+        <ModelPicker selectedId={selectedModelId} onSelect={onModelChange} />
         <View style={styles.spacer} />
-        <IconButton size={18} icon="microphone-outline" mode="contained-tonal" onPress={() => undefined} accessibilityLabel="Voice input" />
+        <IconButton
+          size={18}
+          icon="microphone-outline"
+          mode="contained-tonal"
+          onPress={() => undefined}
+          accessibilityLabel="Voice input"
+        />
         <IconButton
           icon="arrow-up"
           mode="contained"
@@ -161,22 +163,44 @@ const styles = StyleSheet.create({
     borderColor: Colors.brandBorder,
     borderWidth: 1,
   },
-  attachmentRow: { flexDirection: 'row', flexWrap: 'wrap', gap: Spacing.two, paddingTop: Spacing.three },
-  thumbWrap: { marginTop: Spacing.two, marginRight: Spacing.one, paddingLeft: 8 },
-  thumbRemove: { position: 'absolute', top: -Spacing.one, right: -Spacing.one, margin: 0, width: 20, height: 20 },
-  inputRow: { flexDirection: 'row', alignItems: 'center', gap: Spacing.two, marginTop: Spacing.two },
-  modelButton: {
-    paddingVertical: 10,
-    borderRadius: 25,
-    paddingHorizontal: Spacing.three,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: Spacing.one,
-    backgroundColor: Colors.backgroundSelected,
+  attachmentRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: Spacing.two,
+    paddingTop: Spacing.three,
   },
-  modelButtonText: { color: Colors.text },
+  thumbWrap: {
+    marginTop: Spacing.two,
+    marginRight: Spacing.one,
+    paddingLeft: 8,
+  },
+  thumbRemove: {
+    position: "absolute",
+    top: -Spacing.one,
+    right: -Spacing.one,
+    margin: 0,
+    width: 20,
+    height: 20,
+  },
+  inputRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: Spacing.two,
+    marginTop: Spacing.two,
+  },
   spacer: { flex: 1 },
-  input: { backgroundColor: 'transparent', paddingHorizontal: 0, minHeight: 62, maxHeight: 140 },
-  inputContent: { paddingLeft: 8, paddingRight: 8, color: Colors.text, fontSize: 15, fontFamily: 'Geist_400Regular' },
+  input: {
+    backgroundColor: "transparent",
+    paddingHorizontal: 0,
+    minHeight: 62,
+    maxHeight: 140,
+  },
+  inputContent: {
+    paddingLeft: 8,
+    paddingRight: 8,
+    color: Colors.text,
+    fontSize: FontSize.chatInput,
+    fontFamily: "Geist_400Regular",
+  },
   menu: { borderRadius: 16 },
 });
